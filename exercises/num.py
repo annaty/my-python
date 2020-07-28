@@ -4,7 +4,7 @@ while i < 5:
     nmber = int(input())
     if nmber <= 10:
         continue
-    if nmber >= 50:
+    if nmber >= 100:
         break
     else:
         print(nmber)
