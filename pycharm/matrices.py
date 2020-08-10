@@ -25,14 +25,23 @@ def addMatrices(mx1, mx2):
         print("ERROR")
     else:
         for row in range(0, dimA[0]):
-            #create the empty list skeleton
+            #on each iteration add a row
             result.append([])
             #adding the values from mx1 and mx2, and appending it to the list "result"
             for element in range(0, dimA[1]):
                 addition = mx1[row][element] + mx2[row][element]
                 result[row].append([addition])
     
-    return result
+    #making the result pretty
+    counter = 0
+    result_clean = []
+    for row in result:
+        if counter > 0:
+            result_clean.append("\n")
+        for element in row:
+            result_clean.append(str(element).strip("[]"))
+        counter += 1
+    return " ".join(result_clean)
 
 getDimensions(dimA)   
 createMatrix(dimA, matrixA)
