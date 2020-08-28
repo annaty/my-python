@@ -1,23 +1,21 @@
 dimA = []
 dimB = []
-def getDimensions(dim):
-    lenhi = input()
-    for char in lenhi:
-        if char != " ":
-            dim.append(int(char))
-      
-matrixA = []
-matrixB = []
-def createMatrix(dim, emptymatrix):
-    #create the empty list skeleton
-    for row in range(0, dim[0]):
-        emptymatrix.append([])
-        datainput = input()
+mxA = []
+mxB = []
 
-        #transform the datainput into integers and append them to the matrix
-        for char in datainput:
-            if char != " ":
-                emptymatrix[row].append(int(char))
+#def getDimensions(dimentionlist):
+#    lenhi = input()
+#    for char in lenhi:
+#        if char != " ":
+#            dimentionlist.append(int(char))
+      
+def createMatrix(emptydims, emptymatrix):
+    emptydims = [int(_) for _ in input().split()]
+    #creating the matrix from input, then transforming their content into integers
+    emptymatrix = [input().split() for row in range(emptydims[0])]
+    emptymatrix = [[int(element) for element in row]for row in emptymatrix]
+    return emptydims
+
 
 def addMatrices(mx1, mx2):
     result = []
@@ -43,8 +41,28 @@ def addMatrices(mx1, mx2):
         counter += 1
     return " ".join(result_clean)
 
-getDimensions(dimA)   
-createMatrix(dimA, matrixA)
-getDimensions(dimB)   
-createMatrix(dimB, matrixB)
-print(addMatrices(matrixA, matrixB))
+def multiByConst(matrix):
+    const = int(input())
+    result = []
+    counter = 0
+    for row in matrix:
+        result.append([])
+        for element in row:
+            result[counter].append(element * const)
+        counter += 1
+    #making the result pretty
+    counter1 = 0
+    result_clean = []
+    for row in result:
+        if counter1 > 0:
+            result_clean.append("\n")
+        for element in row:
+            result_clean.append(str(element).strip("[]") + " ")
+        counter1 += 1
+    return "".join(result_clean)
+
+
+createMatrix(dimA, mxA)
+print(dimA)
+print(mxA)
+
