@@ -8,7 +8,7 @@ def launchProgram():
         dimA = getDimensions()
         print("Enter first matrix: ")
         mxA = createMatrix(dimA)
-        print("Enter the size of the second matrix: ")
+        print("Enter the size of second matrix: ")
         dimB = getDimensions()
         print("Enter second matrix: ")
         mxB = createMatrix(dimB)
@@ -23,8 +23,18 @@ def launchProgram():
         constant = input("Enter constant: ")
         print(multiByConst(mxA, constant))
         launchProgram()
-    
-
+    elif answer == "3":
+        print("Enter the size of first matrix: ")
+        dimA = getDimensions()
+        print("Enter first matrix: ")
+        mxA = createMatrix(dimA)
+        print("Enter the size of second matrix: ")
+        dimB = getDimensions()
+        print("Enter second matrix: ")
+        mxB = createMatrix(dimB)
+        print("The result is: ")
+        print(multiMatrices(dimA, dimB, mxA, mxB))
+        launchProgram()
 
 def getDimensions():
     try:
@@ -57,6 +67,44 @@ def multiByConst(matrix, const):
     except:
         result = [[element * float(const) for element in row] for row in matrix]
     return prettifyResult(result)
+
+def multiMatrices(dim1, dim2, mx1, mx2):
+    if dim1[1] != dim2[0]:
+        return "The operation cannot be performed."
+    else:
+        resultskeleton = [[] for i in range(2)]
+        sum1 = 0
+        sum2 = 0
+        sum3 = 0
+        sum4 = 0
+        result = [[0, 0],[0, 0]]
+        for i in range(dim1[0]):
+            for j in range(dim2[1]):
+                for k in range(dim2[0]):
+                    result[i][j] += mx1[i][k] * mx2[k][j]
+        #result = [[mx1[mx2.index(row)][element] * mx2[element][mx2.index(row)] for element in range(dim1[1])] for row in mx2] 
+        """for row in mx1:
+
+            if mx1.index(row) == 0:
+                counter = 0
+                for element in row:
+                    sum1 += (element * mx2[counter][0])
+                    print(sum1)
+                    sum2 += (element * mx2[counter][1])
+                    counter += 1
+                resultskeleton[0].append(sum1)
+                resultskeleton[0].append(sum2)
+
+            elif mx1.index(row) == 1:
+                counter = 0
+                for element in row:
+                    sum3 += (element * mx2[counter][0])
+                    sum4 += (element * mx2[counter][1])
+                    counter += 1
+                resultskeleton[1].append(sum3)
+                resultskeleton[1].append(sum4)"""
+
+        return result
 
 def prettifyResult(matrix):
     matrix = [[str(element) for element in row] for row in matrix]
