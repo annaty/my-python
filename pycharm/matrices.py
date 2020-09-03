@@ -21,6 +21,7 @@ def launchProgram():
         print("Enter matrix: ")
         mxA = createMatrix(dimA)
         constant = input("Enter constant: ")
+        print("The result is: ")
         print(multiByConst(mxA, constant))
         launchProgram()
     elif answer == "3":
@@ -74,14 +75,14 @@ def multiMatrices(dim1, dim2, mx1, mx2):
     else:
         #source 
         #https://www.geeksforgeeks.org/python-program-multiply-two-matrices/
-        result = [[0, 0, 0, 0], 
-        [0, 0, 0, 0], 
-        [0, 0, 0, 0]] 
+        result = [[0 for b in range(dim2[1])]for a in range(dim1[0])]
         for i in range(dim1[0]):
+            print(i)
             for j in range(dim2[1]):
+                print(j)
                 for k in range(dim2[0]):
                     result[i][j] += mx1[i][k] * mx2[k][j]
-        return result
+        return prettifyResult(result)
 
 def prettifyResult(matrix):
     matrix = [[str(element) for element in row] for row in matrix]
@@ -90,5 +91,3 @@ def prettifyResult(matrix):
     return "\n".join([" ".join(["{:1}".format(element) for element in row]) for row in matrix])
         
 launchProgram()
-
-
