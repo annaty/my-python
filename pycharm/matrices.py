@@ -53,7 +53,7 @@ def launchProgram():
             print("Enter matrix: ")
             mxA = createMatrix(dimA)
             print("The result is: ")
-
+            print(tSideDiag(dimA, mxA))
             launchProgram()
         elif answer == "3":
             print("Enter matrix size: ")
@@ -61,7 +61,7 @@ def launchProgram():
             print("Enter matrix: ")
             mxA = createMatrix(dimA)
             print("The result is: ")
-
+            print(tVertLine(dimA, mxA))
             launchProgram()
         elif answer == "4":
             print("Enter matrix size: ")
@@ -69,7 +69,7 @@ def launchProgram():
             print("Enter matrix: ")
             mxA = createMatrix(dimA)
             print("The result is: ")
-
+            print(tHoriLine(dimA, mxA))
             launchProgram()
 
 def getDimensions():
@@ -112,9 +112,7 @@ def multiMatrices(dim1, dim2, mx1, mx2):
         #https://www.geeksforgeeks.org/python-program-multiply-two-matrices/
         result = [[0 for b in range(dim2[1])]for a in range(dim1[0])]
         for i in range(dim1[0]):
-            print(i)
             for j in range(dim2[1]):
-                print(j)
                 for k in range(dim2[0]):
                     result[i][j] += mx1[i][k] * mx2[k][j]
         return prettifyResult(result)
@@ -127,13 +125,25 @@ def tMainDiag(dims, matrix):
     return prettifyResult(result)
 
 def tSideDiag(dims, matrix):
-    return None
+    result = [[0 for b in range(dims[1])]for a in range(dims[0])]
+    for row in range(dims[0]):
+        for element in range(dims[1]):
+            result[-(element + 1)][-(row + 1)] = matrix[row][element]
+    return prettifyResult(result)
 
 def tVertLine(dims, matrix):
-    return None
+    result = [[0 for b in range(dims[1])]for a in range(dims[0])]
+    for row in range(dims[0]):
+        for element in range(dims[1]):
+            result[row][-(element + 1)] = matrix[row][element]
+    return prettifyResult(result)
 
 def tHoriLine(dims, matrix):
-    return None
+    result = [[0 for b in range(dims[1])]for a in range(dims[0])]
+    for row in range(dims[0]):
+        for element in range(dims[1]):
+            result[-(row + 1)][element] = matrix[row][element]
+    return prettifyResult(result)
 
 def prettifyResult(matrix):
     matrix = [[str(element) for element in row] for row in matrix]
