@@ -1,5 +1,5 @@
 def launchProgram():
-    print("1. Add matrices\n2. Multiply matrix by a constant\n3. Multiply matrices\n0. Exit")
+    print("1. Add matrices\n2. Multiply matrix by a constant\n3. Multiply matrices\n4. Transpose matrix\n0. Exit")
     answer = input("Your choice: ")
     if answer == "0":
         quit()
@@ -36,6 +36,41 @@ def launchProgram():
         print("The result is: ")
         print(multiMatrices(dimA, dimB, mxA, mxB))
         launchProgram()
+    elif answer == "4":
+        print("1. Main diagonal\n2. Side diagonal\n3. Vertical line\n4. Horizontal line")
+        answer = input("Your choice: ")
+        if answer == "1":
+            print("Enter matrix size: ")
+            dimA = getDimensions()
+            print("Enter matrix: ")
+            mxA = createMatrix(dimA)
+            print("The result is: ")
+            print(tMainDiag(dimA, mxA))
+            launchProgram()
+        elif answer == "2":
+            print("Enter matrix size: ")
+            dimA = getDimensions()
+            print("Enter matrix: ")
+            mxA = createMatrix(dimA)
+            print("The result is: ")
+
+            launchProgram()
+        elif answer == "3":
+            print("Enter matrix size: ")
+            dimA = getDimensions()
+            print("Enter matrix: ")
+            mxA = createMatrix(dimA)
+            print("The result is: ")
+
+            launchProgram()
+        elif answer == "4":
+            print("Enter matrix size: ")
+            dimA = getDimensions()
+            print("Enter matrix: ")
+            mxA = createMatrix(dimA)
+            print("The result is: ")
+
+            launchProgram()
 
 def getDimensions():
     try:
@@ -83,6 +118,22 @@ def multiMatrices(dim1, dim2, mx1, mx2):
                 for k in range(dim2[0]):
                     result[i][j] += mx1[i][k] * mx2[k][j]
         return prettifyResult(result)
+
+def tMainDiag(dims, matrix):
+    result = [[0 for b in range(dims[1])]for a in range(dims[0])]
+    for row in range(dims[0]):
+        for element in range(dims[1]):
+            result[element][row] = matrix[row][element]
+    return prettifyResult(result)
+
+def tSideDiag(dims, matrix):
+    return None
+
+def tVertLine(dims, matrix):
+    return None
+
+def tHoriLine(dims, matrix):
+    return None
 
 def prettifyResult(matrix):
     matrix = [[str(element) for element in row] for row in matrix]
