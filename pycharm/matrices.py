@@ -1,5 +1,7 @@
+import numpy as np
+
 def launchProgram():
-    print("1. Add matrices\n2. Multiply matrix by a constant\n3. Multiply matrices\n4. Transpose matrix\n0. Exit")
+    print("1. Add matrices\n2. Multiply matrix by a constant\n3. Multiply matrices\n4. Transpose matrix\n5. Calculate a determinant\n6. Inverse matrix\n0. Exit")
     answer = input("Your choice: ")
     if answer == "0":
         quit()
@@ -71,6 +73,26 @@ def launchProgram():
             print("The result is: ")
             print(tHoriLine(dimA, mxA))
             launchProgram()
+    elif answer == "5":
+        print("Enter matrix size: ")
+        dimA = getDimensions()
+        print("Enter matrix: ")
+        mxA = createMatrix(dimA)
+        print("The result is: ")
+        print(np.linalg.det(mxA))
+        launchProgram()
+    elif answer == "6":
+        print("Enter matrix size: ")
+        dimA = getDimensions()
+        print("Enter matrix: ")
+        mxA = createMatrix(dimA)
+        if np.linalg.det(mxA) == 0:
+            print("This matrix doesn't have an inverse.")
+        else:
+            print("The result is: ")
+            print(prettifyResult(np.linalg.inv(mxA)))
+            launchProgram()
+
 
 def getDimensions():
     try:
